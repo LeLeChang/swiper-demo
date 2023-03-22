@@ -1,20 +1,15 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { HttpClientModule } from "@angular/common/http";
 
-import { AppComponent } from './app.component';
-import { SwiperModule } from 'swiper/angular';
-import { SliderComponent } from './slider/slider.component';
+import { AppComponent } from "./app.component";
+import { SwiperModule } from "swiper/angular";
+import { SliderComponent } from "./slider/slider.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SliderComponent
-  ],
-  imports: [
-    BrowserModule,
-    SwiperModule
-  ],
+  declarations: [AppComponent, SliderComponent],
+  imports: [BrowserModule, SwiperModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
