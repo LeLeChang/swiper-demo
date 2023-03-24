@@ -1,0 +1,11 @@
+<ng-container *ngIf="waterfall">
+  <div id="waterfall-container" class="cols">
+    <div class="waterfall-item" *ngFor="let item of waterfall.details;">
+      <div class="item">
+        <a [href]="item.href">
+          <img [src]="item.path" [alt]="item.title" />
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-container>

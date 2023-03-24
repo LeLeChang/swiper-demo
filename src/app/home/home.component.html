@@ -1,0 +1,8 @@
+<ng-container *ngIf="homeData$ | async as homeData">
+  <div class="slide-container">
+    <app-slider [sliders]="homeData.slideImages" ></app-slider>
+  </div>
+  <div class="waterfall-container">
+    <app-waterfall [waterfall]="homeData.singleWaterfallInfo"></app-waterfall>
+  </div>
+</ng-container>

@@ -1,25 +1,22 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ImageLinkBase } from '../model/home/image-link-base';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import Swiper, {
   Autoplay,
   Navigation,
   Pagination,
   SwiperOptions,
-} from "swiper";
-
-import { SliderService } from "./service/slider.service";
-import { Slider } from "./service/slider-info";
-import { Subject, takeUntil, tap } from "rxjs";
+} from 'swiper';
 
 Swiper.use([Autoplay, Navigation, Pagination]);
 
 @Component({
-  selector: "app-slider",
-  templateUrl: "./slider.component.html",
-  styleUrls: ["./slider.component.scss"],
+  selector: 'app-slider',
+  templateUrl: './slider.component.html',
+  styleUrls: ['./slider.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SliderComponent implements OnInit, OnDestroy {
-  sliders: Slider[] = [];
-  destroy$ = new Subject<void>();
+export class SliderComponent {
+  @Input() sliders: ImageLinkBase[] = [];
 
   readonly config: SwiperOptions = {
     pagination: {
@@ -33,31 +30,4 @@ export class SliderComponent implements OnInit, OnDestroy {
     autoHeight: true,
     loop: true,
   };
-
-  constructor(private sliderService: SliderService) {}
-
-  ngOnInit() {
-    this.getSliders();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.unsubscribe();
-  }
-
-  getSliders(): void {
-    this.sliderService
-      .getSliders()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (result) => {
-          if (!result || !result.sliders) {
-            this.sliders = [];
-            return;
-          }
-          this.sliders = result.sliders;
-        },
-        error: (err) => console.log("Get Sliders Error"),
-      });
-  }
 }
