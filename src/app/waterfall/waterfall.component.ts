@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { SingleWaterfallInfo } from '../model/home/home';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { RoutePaths } from '../route-paths';
 
 @Component({
   selector: 'app-waterfall',
@@ -28,4 +29,9 @@ export class WaterfallComponent {
         }
       });
   }
+
+  productDetailUrl(productNo: string): string{
+    return `/${RoutePaths.productDetail}/${productNo}`;
+  }
+
 }

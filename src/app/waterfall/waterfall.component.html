@@ -1,7 +1,7 @@
 <div *ngIf="waterfall" id="waterfall-container" [ngClass]="isTwoColumn ? 'twoCols' : ''">
-  <div class="waterfall-item" *ngFor="let item of waterfall.details;">
-    <div class="item">
-      <a [href]="item.href">
+  <div *ngFor="let item of waterfall.details;" class="waterfall-item" >
+    <div *ngIf="item.productInfo" class="item">
+      <a [routerLink]="productDetailUrl(item.productInfo.productNo)">
         <img [src]="item.path" [alt]="item.title" />
       </a>
     </div>

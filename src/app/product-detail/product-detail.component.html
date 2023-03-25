@@ -1,0 +1,16 @@
+<div *ngIf="productInfo$ | async as productInfo">
+  <div class="pd_content">
+    <div class="pd_title">
+      <a id="back" (click)="goBack()">
+        <img src="https://s4.lativ.com.tw/m/images/assets/icons/icon_circlearrowL_light.svg">
+      </a>
+    </div>
+    <div class="pd_img">
+      <img [src]="productInfo.shareImage" />
+    </div>
+    <div class="pd_info">
+      <div class="title">{{ productInfo.name }}</div>
+      <div class="price">{{ productInfo.price | currency: 'TWD'  }}</div>
+    </div>
+  </div>
+</div>
