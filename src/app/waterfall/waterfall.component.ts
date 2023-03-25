@@ -15,7 +15,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class WaterfallComponent {
   @Input() waterfall!: SingleWaterfallInfo;
-  isTwoColumn$ = new BehaviorSubject(true);
+  isTwoColumn: boolean = true;
 
   constructor(private responsive: BreakpointObserver) {}
 
@@ -24,11 +24,10 @@ export class WaterfallComponent {
       .observe([Breakpoints.XSmall, Breakpoints.Small])
       .subscribe((result) => {
         const breakPoints = result.breakpoints;
+        this.isTwoColumn = true;
 
         if (breakPoints[Breakpoints.XSmall] || breakPoints[Breakpoints.Small]) {
-          this.isTwoColumn$.next(false);
-        }else{
-          this.isTwoColumn$.next(true);
+          this.isTwoColumn = false;
         }
       });
   }

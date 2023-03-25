@@ -1,4 +1,4 @@
-<div *ngIf="waterfall" id="waterfall-container" [ngClass]="{'twoCols': (isTwoColumn$ | async) }">
+<div *ngIf="waterfall" id="waterfall-container" [ngClass]="isTwoColumn ? 'twoCols' : ''">
   <div class="waterfall-item" *ngFor="let item of waterfall.details;">
     <div class="item">
       <a [href]="item.href">
