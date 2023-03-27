@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { HomeComponent } from './home/home.component';
-import { RoutePaths } from './route-paths';
 
 const routes: Routes = [
-  { path: RoutePaths.home, component: HomeComponent },
-  { path: `${RoutePaths.productDetail}/:productNo`, component: ProductDetailComponent },
-  { path: '**', component: HomeComponent }
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+  },
+  {
+    path: 'detail/:productNo',
+    loadChildren: () => import('./product-detail/product-detail.module').then(m => m.ProductDetailModule),
+  },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes)
-  ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
